@@ -25,11 +25,9 @@ const routes: Routes = [
           import("./views/pages/user/user.module").then((m) => m.UserModule),
       },
       {
-        path: "task-board",
+        path: "admin-panel",
         loadChildren: () =>
-          import("./views/pages/task-board/task-board.module").then(
-            (m) => m.TaskBoardModule
-          ),
+          import("./views/pages/admin-panel/admin-panel.module").then((m) => m.AdminPanelModule),
       },
     ],
   },

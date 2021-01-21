@@ -3,8 +3,8 @@ import { Component, OnInit, VERSION } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "./../../../../shared/services/auth.service";
 import { ProductService } from "./../../../../shared/services/product.service";
-
 import { ThemeService } from "src/app/shared/services/theme.service";
+import { userInfo } from "os";
 declare var $: any;
 
 @Component({
@@ -14,7 +14,6 @@ declare var $: any;
 })
 export class NavbarComponent implements OnInit {
   angularVersion = VERSION;
-
   colorPallet1 = [
     {
       title: "Purple Theme",
@@ -59,7 +58,7 @@ export class NavbarComponent implements OnInit {
     // console.log(translate.data);
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
   logout() {
     this.authService.logout();
     this.router.navigate(["/"]);

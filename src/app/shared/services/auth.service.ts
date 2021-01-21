@@ -35,7 +35,7 @@ export class AuthService {
   constructor(
     private firebaseAuth: AngularFireAuth,
     private router: Router,
-    private userService: UserService
+    public userService: UserService
   ) {
     this.user = firebaseAuth.authState;
 
