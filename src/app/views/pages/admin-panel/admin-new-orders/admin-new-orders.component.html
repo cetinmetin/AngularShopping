@@ -1,23 +1,28 @@
 <div class="accordion" id="accordionExample">
-    <div class="card">
-        <div class="card-header" id="headingOne">
+    <div *ngFor="let billing of billings; let i=index" class="card">
+        <div *ngIf="billing.firstName" class="card-header" id="headingOne">
             <h2 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    Sipariş #1
+                <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + i"
+                    aria-expanded="true" [attr.aria-controls]="'collapse' + i">
+                    {{billing.billingDate* 1000 | date}} Tarihli Sipariş
                 </button>
             </h2>
         </div>
 
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div *ngIf="billing.firstName"  [attr.id]="'collapse' + i" class="collapse show" aria-labelledby="headingOne"
+            data-parent="#accordionExample">
             <div class="card-body">
                 <div class="order">
                     <div class="order-header">
-                        <div class="order-header-info">Sipariş Tarihi <b>16 Ocak - 18:07</b></div>
-                        <div class="order-header-info">Sipariş Özeti <b title="1 Teslimat, 4 Ürün">1 Teslimat, 4 Ürün</b>
+                        <div class="order-header-info">Sipariş Tarihi: <b>{{billing.billingDate* 1000 | date}}</b></div>
+                        <div class="order-header-info">Sipariş Özeti: <b title="1 Teslimat, 4 Ürün">1 Teslimat, 4
+                                Ürün</b>
                         </div>
-                        <div class="order-header-info">Alıcı <b>Metin ÇETİN</b></div>
-                        <div class="order-header-info">Tutar <b class="white">59 TL</b></div>
+                        <div class="order-header-info">Alıcı: <b>{{billing.firstName}}</b></div>
+                        <div class="order-header-info">Tutar: <b class="white">{{billing.totalPrice}} TL</b></div>
+                        <div class="order-header-info">Adres: <b class="white">{{billing.address1}}</b></div>
+                        <div class="order-header-info">Şehir: <b class="white">{{billing.state}}</b></div>
+                        <div class="order-header-info">Email: <b class="white">{{billing.email}}</b></div>
                         <a href="/hesabim/siparislerim/472159625"><button type="button"
                                 class="ty-font-w-semi-bold ty-button ty-bordered ty-transition ty-input-small ty-primary">Siparişi
                                 Onayla</button></a>

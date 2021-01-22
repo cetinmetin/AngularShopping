@@ -3,10 +3,11 @@ export class Billing {
   firstName: string;
   lastName: string;
   emailId: string;
+  billingDate: number;
   address1: string;
   address2: string;
   country: string;
   state: string;
   zip: string;
-  totalPrice:number;
+  totalPrice: number;
 }

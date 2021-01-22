@@ -6,6 +6,7 @@ import {
 import { Billing } from "./../models/billing";
 import { Injectable } from "@angular/core";
 
+const firebase = require('firebase/app');
 @Injectable({
   providedIn: "root",
 })
@@ -18,6 +19,12 @@ export class BillingService {
 
   createBillings(data: Billing) {
     this.billings.push(data);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.db.database.ref('billings').child(user.uid).push(data)
+      }
+    }
+    )
   }
 
   getBillings() {
@@ -26,8 +33,8 @@ export class BillingService {
   }
 
   getBillingById(key: string) {
-    this.billing = this.db.object("products/" + key);
-    return this.billing;
+    this.billings = this.db.list("billings/" + key);
+    return this.billings;
   }
 
   updateBilling(data: Billing) {

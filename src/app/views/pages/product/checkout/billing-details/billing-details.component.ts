@@ -7,7 +7,7 @@ import { AuthService } from "../../../../../shared/services/auth.service";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { map } from "rxjs/operators";
-
+const moment = require("moment");
 @Component({
   selector: "app-billing-details",
   templateUrl: "./billing-details.component.html",
@@ -57,7 +57,7 @@ export class BillingDetailsComponent implements OnInit {
       //userId: this.userDetails.$key,
       products,
       totalPrice,
-      billingDate: Date.now(),
+      billingDate: moment().unix()
     };
     localStorage.setItem('billingDetails', JSON.stringify(data));
     this.router.navigate([
