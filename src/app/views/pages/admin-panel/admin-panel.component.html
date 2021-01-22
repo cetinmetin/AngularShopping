@@ -1,1 +1,27 @@
-<p>pUĞĞĞĞĞGĞGĞHĞĞGĞHH</p>
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <ul class="list-group">
+                <li class="list-group-item hoverable">
+                    <a [routerLink]="['admin-new-orders']">Yeni Siparişler</a>
+                </li>
+                <li class="list-group-item hoverable">
+                    <a [routerLink]="['admin-confirmed-orders']">Onaylanan Siparişler</a>
+                </li>
+                <li class="list-group-item hoverable">
+                    <a [routerLink]="['admin-shipped-orders']">Kargolanan Siparişler</a>
+                </li>
+                <li class="list-group-item hoverable">
+                    <a [routerLink]="['admin-completed-orders']">Tamamlanan Siparişler</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-8">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

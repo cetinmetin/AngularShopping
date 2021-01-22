@@ -26,10 +26,13 @@
             >Sepetiniz</a
           >
         </li>
+        <li class="list-group-item hoverable">
+          <a [routerLink]="['user-orders']">Siparişlerim</a>
+      </li>
       </ul>
     </div>
     <div class="col-sm-8">
-      <router-outlet name="profileOutlet"></router-outlet>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
