@@ -1,6 +1,6 @@
-<div class="accordion" id="accordionExample">
-    <div *ngFor="let billing of billings; let i=index" class="card">
-        <div *ngIf="billing.firstName" class="card-header" id="headingOne">
+<div *ngFor="let billing of billings; let i=index" class="accordion" id="accordionExample">
+    <div *ngIf="billing.firstName && billing.orderStatus == 1" class="card">
+        <div class="card-header" id="headingOne">
             <h2 class="mb-0">
                 <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + i"
                     aria-expanded="true" [attr.aria-controls]="'collapse' + i">
@@ -9,7 +9,7 @@
             </h2>
         </div>
 
-        <div *ngIf="billing.firstName"  [attr.id]="'collapse' + i" class="collapse show" aria-labelledby="headingOne"
+        <div [attr.id]="'collapse' + i" class="collapse show" aria-labelledby="headingOne"
             data-parent="#accordionExample">
             <div class="card-body">
                 <div class="order">
@@ -23,11 +23,10 @@
                         <div class="order-header-info">Adres: <b class="white">{{billing.address1}}</b></div>
                         <div class="order-header-info">Şehir: <b class="white">{{billing.state}}</b></div>
                         <div class="order-header-info">Email: <b class="white">{{billing.email}}</b></div>
-                        <a href="/hesabim/siparislerim/472159625"><button type="button"
-                                class="ty-font-w-semi-bold ty-button ty-bordered ty-transition ty-input-small ty-primary">Siparişi
+                        <a (click)="confirmOrder(billing.billingID)"><button type="button"
+                                class="btn btn-success">Siparişi
                                 Onayla</button></a>
-                        <a href="/hesabim/iadetalebi/472159625/814034607"><button type="button"
-                                class="ty-font-w-semi-bold ty-button ty-bordered ty-transition ty-input-small ty-secondary">Siparişi
+                        <a><button type="button" class="btn btn-danger">Siparişi
                                 Reddet</button></a>
                     </div>
                 </div>

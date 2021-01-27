@@ -40,7 +40,17 @@ export class BillingDetailsComponent implements OnInit {
     );
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  getUniqueId(parts: number): string {
+    const stringArr = [];
+    for (let i = 0; i < parts; i++) {
+      // tslint:disable-next-line:no-bitwise
+      const S4 = (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+      stringArr.push(S4);
+    }
+    return stringArr.join('-');
+  }
 
   updateUserDetails(form: NgForm) {
     let totalPrice = 0;
@@ -57,7 +67,9 @@ export class BillingDetailsComponent implements OnInit {
       //userId: this.userDetails.$key,
       products,
       totalPrice,
-      billingDate: moment().unix()
+      billingDate: moment().unix(),
+      orderStatus: 1,
+      billingID: this.getUniqueId(4)
     };
     localStorage.setItem('billingDetails', JSON.stringify(data));
     this.router.navigate([

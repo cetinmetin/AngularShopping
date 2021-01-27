@@ -20,7 +20,6 @@ export class UserOrdersComponent implements OnInit {
         // User logged in already or has just logged in.
         this.billingService.getBillingById(user.uid).valueChanges().subscribe(data => {
           this.billings = data
-          console.log(this.billings)
         })
       }
     }

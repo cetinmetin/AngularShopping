@@ -10,4 +10,7 @@ export class Billing {
   state: string;
   zip: string;
   totalPrice: number;
+  billingID: string;
+  orderStatus: number;
+  trackingLink: string;
 }

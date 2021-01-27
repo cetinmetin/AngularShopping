@@ -5,7 +5,7 @@
         <div class="header-bar">
             <h1>Siparişlerim</h1>
         </div>
-        <div *ngFor="let billing of billings; let i=index" >
+        <div *ngFor="let billing of billings; let i=index">
             <div class="order">
                 <div class="order-header">
                     <div class="order-header-info">Sipariş Tarihi<b>{{billing.billingDate}}</b></div>
@@ -44,10 +44,10 @@
                         <div class="row d-flex justify-content-center">
                             <div class="col-12">
                                 <ul id="progressbar" class="text-center">
-                                    <li class="active step0"></li>
-                                    <li class="active step0"></li>
-                                    <li class="step0"></li>
-                                    <li class="step0"></li>
+                                    <li *ngIf="billing.orderStatus >= 2" class="active step0"></li>
+                                    <li *ngIf="billing.orderStatus >= 3" class="active step0"></li>
+                                    <li *ngIf="billing.orderStatus >= 3" class="active step0"></li>
+                                    <li *ngIf="billing.orderStatus >= 4" class="active step0"></li>
                                 </ul>
                             </div>
                         </div>
@@ -55,27 +55,31 @@
                             <div class="row d-flex icon-content"> <img class="icon"
                                     src="https://i.imgur.com/9nnc9Et.png">
                                 <div class="d-flex flex-column">
-                                    <p class="font-weight-bold">Order<br>Processed</p>
+                                    <p class="font-weight-bold">Sipariş<br>Onaylandı</p>
                                 </div>
                             </div>
                             <div class="row d-flex icon-content"> <img class="icon"
                                     src="https://i.imgur.com/u1AzR7w.png">
                                 <div class="d-flex flex-column">
-                                    <p class="font-weight-bold">Order<br>Shipped</p>
+                                    <p class="font-weight-bold">Sipariş<br>Kargolandı</p>
                                 </div>
                             </div>
                             <div class="row d-flex icon-content"> <img class="icon"
                                     src="https://i.imgur.com/TkPm63y.png">
                                 <div class="d-flex flex-column">
-                                    <p class="font-weight-bold">Order<br>En Route</p>
+                                    <p class="font-weight-bold">Sipariş<br>Yolda</p>
                                 </div>
                             </div>
                             <div class="row d-flex icon-content"> <img class="icon"
                                     src="https://i.imgur.com/HdsziHP.png">
                                 <div class="d-flex flex-column">
-                                    <p class="font-weight-bold">Order<br>Arrived</p>
+                                    <p class="font-weight-bold">Sipariş<br>Tamamlandı</p>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row d-flex justify-content-center" *ngIf="billing.orderStatus ==3"><a
+                                href="{{billing.trackingLink}}" target="blank"><button class="btn btn-warning">Gönderi
+                                    Takibi için Tıklayın</button></a>
                         </div>
                     </div>
                     <!--TRACKİNG PROGRESS BAR-->
@@ -89,5 +93,3 @@
     <script type="application/javascript"
         src="https://cdn.dsmcdn.com/web/production/orders.bundle.9a3c829c916c544855d93c84f45c28a4.js" defer=""></script>
 </div>
-
-

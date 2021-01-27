@@ -14,13 +14,11 @@ export class AdminGaurd implements CanActivate {
     this.authService.isAdmin$.subscribe(data => {
       isAdmin = data
     });
-
     if (isLoggedIn == true && isAdmin == true) {
       return true;
     }
-    else {
+    else if(isLoggedIn == false && isAdmin == false) {
       this.router.navigate(["no-access"]);
-      console.log("admin değilsin")
       return false;
     }
   }
