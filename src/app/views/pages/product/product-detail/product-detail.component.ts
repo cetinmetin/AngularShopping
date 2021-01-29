@@ -12,7 +12,6 @@ import { Router } from "@angular/router";
 export class ProductDetailComponent implements OnInit, OnDestroy {
   private sub: any;
   product: Product;
-
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -43,13 +42,23 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   addToCart(product: Product) {
-    this.productService.addToCart(product);
+    var quantity = parseInt((document.getElementById("quantity") as HTMLInputElement).value);
+    var noteForSeller = ((document.getElementById("noteForSeller") as HTMLInputElement).value).toString()
+    if (noteForSeller.trim().length > 0) {
+      product.noteForSeller = noteForSeller
+    }
+    this.productService.addToCart(product, quantity);
   }
-  purchase(product:Product){
-    this.productService.addToCart(product)
+  purchase(product: Product) {
+    var quantity = parseInt((document.getElementById("quantity") as HTMLInputElement).value);
+    var noteForSeller = ((document.getElementById("noteForSeller") as HTMLInputElement).value).toString()
+    if (noteForSeller.trim().length > 0) {
+      product.noteForSeller = noteForSeller
+    }
+    this.productService.addToCart(product, quantity)
     setTimeout(() => {
       this.router.navigateByUrl('/checkouts');
-  }, 2000);
+    }, 2000);
   }
   ngOnDestroy() {
     this.sub.unsubscribe();

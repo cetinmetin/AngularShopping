@@ -21,7 +21,7 @@ export class ProductService {
     private db: AngularFireDatabase,
     private authService: AuthService,
     private toastrService: ToastrService
-  ) {}
+  ) { }
 
   getProducts() {
     this.products = this.db.list("products");
@@ -101,17 +101,16 @@ export class ProductService {
   */
 
   // Adding new Product to cart db if logged in else localStorage
-  addToCart(data: Product): void {
-    const a: Product[] = JSON.parse(localStorage.getItem("avct_item")) || [];
-    a.push(data);
-
-    this.toastrService.wait(
-      "Adding Product to Cart",
-      "Product Adding to the cart"
-    );
-    setTimeout(() => {
+  addToCart(data: Product, quantity: number): void {
+    for (let i = 0; i < quantity; i++) {
+      const a: Product[] = JSON.parse(localStorage.getItem("avct_item")) || [];
+      a.push(data);
       localStorage.setItem("avct_item", JSON.stringify(a));
-    }, 500);
+    }
+    this.toastrService.wait(
+      "Ürün Ekleme Başarılı",
+      "Ürün Sepete Eklendi"
+    );
   }
 
   // Removing cart from local

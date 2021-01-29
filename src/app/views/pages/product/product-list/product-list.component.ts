@@ -52,9 +52,9 @@ export class ProductListComponent implements OnInit {
     this.productService.addFavouriteProduct(product);
   }
 
-  addToCart(product: Product) {
-    this.productService.addToCart(product);
-  }
+  // addToCart(product: Product) {
+  //   this.productService.addToCart(product);
+  // }
   updateProduct(product: Product) {
     this.productService.updateProduct(product);
   }

@@ -63,6 +63,52 @@
 
           <div class="mb-3">
             <label for="productDescription"
+              >Ürün Seçenekleri
+              <span class="text-muted">(Opsiyonel)</span>
+            </label>
+            <select class="selectpicker show-tick form-control" aria-label="Default select example">
+              <option selected>Seçenek Sayısı</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            <!--Dinamik Eklenecek Seçenekler-->
+
+            <!-- <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="productName">Ürün Seçeneği</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="productName"
+                  name="productName"
+                  [(ngModel)]="product.productName"
+                  placeholder="Ürün Seçeneği"
+                  value=""
+                  required
+                />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="productCategory">Fiyat</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="productCategory"
+                  name="productCategory"
+                  [(ngModel)]="product.productCategory"
+                  placeholder="Fiyat"
+                  value=""
+                  required
+                />
+                <div class="invalid-feedback">
+                  Kategori Zorunlu!
+                </div>
+              </div>
+            </div> -->
+          </div>
+
+          <div class="mb-3">
+            <label for="productDescription"
               >Ürün Açıklaması
               <span class="text-muted">(Optional)</span>
             </label>
@@ -100,7 +146,7 @@
                 class="form-control"
                 id="productQuatity"
                 name="productQuatity"
-                [(ngModel)]="product.productQuatity"
+                [(ngModel)]="product.productQuantity"
                 placeholder="Stok Miktarı"
                 value=""
                 required

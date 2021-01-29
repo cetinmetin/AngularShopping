@@ -15,21 +15,20 @@
               <span class="text-muted" style="color: crimson !important;">{{ product.productPrice }} TL</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Satıcı Firma</h6>
+              <div style="margin-top: 3%;margin-right:2%;">
+                <h6 class="my-0">Adet</h6>
               </div>
-              <span class="text-muted" style="color: crimson !important;">{{
-                product.productSeller
-                }}</span>
+              <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Adet Belirtin"
+                #quantityInput required>
             </li>
           </ul>
           <div class="d-flex justify-content-around">
-            <button class="btn btn-primary" (click)="addToCart(product)">
+            <Button [disabled]="quantityInput.value <= 0" class="btn btn-primary" (click)="addToCart(product)">
               Sepete Ekle
-            </button>
-            <button class="btn btn-primary" (click)="purchase(product)">
+            </Button>
+            <Button [disabled]="quantityInput.value <= 0" class="btn btn-primary" (click)="purchase(product)">
               Satın Al
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -51,13 +50,20 @@
               <th scope="row">Kategori</th>
               <td>{{ product.productCategory }}</td>
             </tr>
-            <tr>
+            <!-- <tr>
               <th scope="row">Stok Miktarı</th>
               <td>{{ product.productQuatity }}</td>
-            </tr>
+            </tr> -->
             <tr>
               <th scope="row">Ürünün Eklenme Tarihi</th>
               <td>{{ product.productAdded * 1000 | date }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Satıcıya Not</th>
+              <td>
+                <textarea style="resize: none;" class="form-control" id="noteForSeller" name="noteForSeller" rows="3"
+                  #noteForSeller></textarea>
+              </td>
             </tr>
           </tbody>
         </table>
