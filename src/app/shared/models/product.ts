@@ -1,3 +1,5 @@
+import { ProductOptions } from "./productOptions";
+
 export class Product {
   $key: string;
   productId: number;
@@ -12,4 +14,5 @@ export class Product {
   favourite: boolean;
   productSeller: string;
   noteForSeller: string;
+  productOption: ProductOptions[]
 }

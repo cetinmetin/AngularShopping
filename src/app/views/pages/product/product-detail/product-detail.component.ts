@@ -1,4 +1,5 @@
 import { Product } from "../../../../shared/models/product";
+import { ProductOptions } from "../../../../shared/models/productOptions";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ProductService } from "../../../../shared/services/product.service";
@@ -12,6 +13,9 @@ import { Router } from "@angular/router";
 export class ProductDetailComponent implements OnInit, OnDestroy {
   private sub: any;
   product: Product;
+  productOption: ProductOptions[]
+  selectedOption: number
+  productOptionName: string
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -47,7 +51,15 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     if (noteForSeller.trim().length > 0) {
       product.noteForSeller = noteForSeller
     }
+    // if (this.selectedOption) {
+    //   this.product.productPrice = this.selectedOption
+    //   console.log(this.selectedOption)
+    // }
     this.productService.addToCart(product, quantity);
+  }
+  onChange(deviceValue) {
+    this.product.productName = deviceValue.options[deviceValue.options.selectedIndex].text;
+    this.product.productPrice = deviceValue.value;
   }
   purchase(product: Product) {
     var quantity = parseInt((document.getElementById("quantity") as HTMLInputElement).value);

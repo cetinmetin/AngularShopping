@@ -1,60 +1,29 @@
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModalLong"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLongTitle"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Ürün Ekle</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form
-          class="needs-validation"
-          #addProductForm="ngForm"
-          (ngSubmit)="createProduct(addProductForm)"
-        >
+        <form class="needs-validation" #addProductForm="ngForm" (ngSubmit)="createProduct(addProductForm)">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="productName">Ürün Adı</label>
-              <input
-                type="text"
-                class="form-control"
-                id="productName"
-                name="productName"
-                [(ngModel)]="product.productName"
-                placeholder="Ürün Adı"
-                value=""
-                required
-              />
+              <input type="text" class="form-control" id="productName" name="productName"
+                [(ngModel)]="product.productName" placeholder="Ürün Adı" value="" required />
               <div class="invalid-feedback">
                 Ürün Adı Zorunlu!
               </div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="productCategory">Ürün Kategorisi</label>
-              <input
-                type="text"
-                class="form-control"
-                id="productCategory"
-                name="productCategory"
-                [(ngModel)]="product.productCategory"
-                placeholder="Ürün Kategorisi"
-                value=""
-                required
-              />
+              <input type="text" class="form-control" id="productCategory" name="productCategory"
+                [(ngModel)]="product.productCategory" placeholder="Ürün Kategorisi" value="" required />
               <div class="invalid-feedback">
                 Kategori Zorunlu!
               </div>
@@ -62,95 +31,58 @@
           </div>
 
           <div class="mb-3">
-            <label for="productDescription"
-              >Ürün Seçenekleri
+            <label for="productDescription">Ürün Seçenekleri
               <span class="text-muted">(Opsiyonel)</span>
             </label>
-            <select class="selectpicker show-tick form-control" aria-label="Default select example">
-              <option selected>Seçenek Sayısı</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Seçenek Sayısı" aria-label="quantityOfOption"
+                aria-describedby="basic-addon2" id="quantityOfOption">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="createOptions()" type="button">Onayla</button>
+              </div>
+            </div>
             <!--Dinamik Eklenecek Seçenekler-->
 
-            <!-- <div class="row">
-              <div class="col-md-6 mb-3">
+            <div class="row" *ngFor="let quantity of quantityOfOptions; let i = index">
+              <div [attr.id]="'collapse' + quantityOfOptions[i]" class="col-md-6 mb-3"
+                *ngIf="quantityOfOptions.length>0">
                 <label for="productName">Ürün Seçeneği</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="productName"
-                  name="productName"
-                  [(ngModel)]="product.productName"
-                  placeholder="Ürün Seçeneği"
-                  value=""
-                  required
-                />
+                <input type="text" class="form-control" id="option{{quantityOfOptions[i]}}"
+                  name="option{{quantityOfOptions[i]}}" placeholder="Ürün Seçeneği" required />
               </div>
-              <div class="col-md-6 mb-3">
+              <div [attr.id]="'collapse' + quantityOfOptions[i]" class="col-md-6 mb-3"
+                *ngIf="quantityOfOptions.length>0">
                 <label for="productCategory">Fiyat</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="productCategory"
-                  name="productCategory"
-                  [(ngModel)]="product.productCategory"
-                  placeholder="Fiyat"
-                  value=""
-                  required
-                />
+                <input type="number" class="form-control" id="price{{quantityOfOptions[i]}}"
+                  name="price{{quantityOfOptions[i]}}" placeholder="Fiyat" required />
                 <div class="invalid-feedback">
-                  Kategori Zorunlu!
+                  Fiyat Zorunlu!
                 </div>
               </div>
-            </div> -->
+            </div>
           </div>
 
           <div class="mb-3">
-            <label for="productDescription"
-              >Ürün Açıklaması
+            <label for="productDescription">Ürün Açıklaması
               <span class="text-muted">(Optional)</span>
             </label>
-            <textarea
-              type="text"
-              class="form-control"
-              id="productDescription"
-              placeholder="Ürün Açıklaması"
-              name="productDescription"
-              [(ngModel)]="product.productDescription"
-            ></textarea>
+            <textarea type="text" class="form-control" id="productDescription" placeholder="Ürün Açıklaması"
+              name="productDescription" [(ngModel)]="product.productDescription"></textarea>
           </div>
 
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="productPrice">Ürün Fiyatı</label>
-              <input
-                type="number"
-                name="productPrice"
-                class="form-control"
-                [(ngModel)]="product.productPrice"
-                placeholder="Ürün Fiyatı"
-                id="productPrice"
-                value=""
-                required
-              />
+              <input type="number" name="productPrice" class="form-control" [(ngModel)]="product.productPrice"
+                placeholder="Ürün Fiyatı" id="productPrice" value="" required />
               <div class="invalid-feedback">
                 Fiyat Bilgisi Zorunlu!
               </div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="productQuatity">Stok Miktarı</label>
-              <input
-                type="text"
-                class="form-control"
-                id="productQuatity"
-                name="productQuatity"
-                [(ngModel)]="product.productQuantity"
-                placeholder="Stok Miktarı"
-                value=""
-                required
-              />
+              <input type="text" class="form-control" id="productQuatity" name="productQuatity"
+                [(ngModel)]="product.productQuantity" placeholder="Stok Miktarı" value="" required />
               <div class="invalid-feedback">
                 Stok Bilgisi Zorunlu
               </div>
@@ -159,27 +91,13 @@
 
           <div class="mb-3">
             <label for="productSeller">Satıcı</label>
-            <input
-              type="text"
-              class="form-control"
-              id="productSeller"
-              [(ngModel)]="product.productSeller"
-              name="productSeller"
-              placeholder="Satıcı Firma"
-              required
-            />
+            <input type="text" class="form-control" id="productSeller" [(ngModel)]="product.productSeller"
+              name="productSeller" placeholder="Satıcı Firma" required />
           </div>
           <div class="mb-3">
             <label for="productImageUrl">Ürün Resmi</label>
-            <input
-              type="text"
-              class="form-control"
-              id="productImageUrl"
-              [(ngModel)]="product.productImageUrl"
-              name="productImageUrl"
-              placeholder="Resim Linki"
-              required
-            />
+            <input type="text" class="form-control" id="productImageUrl" [(ngModel)]="product.productImageUrl"
+              name="productImageUrl" placeholder="Resim Linki" required />
           </div>
 
           <hr class="mb-4" />

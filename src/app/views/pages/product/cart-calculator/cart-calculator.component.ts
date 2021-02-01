@@ -17,7 +17,7 @@ export class CartCalculatorComponent implements OnInit, OnChanges {
   @Input() products: Product[];
 
   totalValue = 0;
-  constructor() {}
+  constructor() { }
 
   ngOnChanges(changes: SimpleChanges) {
     const dataChanges: SimpleChange = changes.products;
@@ -25,9 +25,10 @@ export class CartCalculatorComponent implements OnInit, OnChanges {
     const products: Product[] = dataChanges.currentValue;
     this.totalValue = 0;
     products.forEach((product) => {
-      this.totalValue += product.productPrice;
+      this.totalValue += + product.productPrice;
+      console.log(this.totalValue)
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }
