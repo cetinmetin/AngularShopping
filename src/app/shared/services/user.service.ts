@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
-import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from "@angular/fire/database";
 
 import * as moment from "moment";
 import { User } from "../models/user";
-
+const firebase = require('firebase/app');
 @Injectable()
 export class UserService {
   selectedUser: User = new User();
   users: AngularFireList<User>;
-
+  user: AngularFireObject<User>;
   location = {
     lat: null,
     lon: null,
@@ -23,7 +23,8 @@ export class UserService {
     return this.users;
   }
 
-  getUserById(id: string) {}
+  getUser(id: string) {
+  }
 
   createUser(data: any) {
     const updatedData = {

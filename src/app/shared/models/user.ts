@@ -1,3 +1,4 @@
+import { UserAddresses } from "./userAddresses";
 export class User {
   $key: string;
   userName: string;
@@ -12,7 +13,6 @@ export class User {
   isAdmin: boolean;
   avatar?: string;
 }
-
 export class UserDetail {
   $key: string;
   firstName: string;

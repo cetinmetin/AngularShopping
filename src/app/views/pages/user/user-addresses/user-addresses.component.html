@@ -1,13 +1,13 @@
 <div class="container mt-3">
     <div class="col-md order-md-1">
         <h4 class="mb-3">Kayıtlı Adreslerim</h4>
-        <select class="selectpicker show-tick form-control" [(ngModel)]="registeredAdresses"
+        <select class="selectpicker show-tick form-control" [(ngModel)]="registeredAddress"
                 (change)="onChange($event.target)" #optionSelect required>
-                <option disabled selected>Ürün Seçenekleri</option>
-                <!-- <option *ngFor="let item of userInfos | keyvalue; let i=index"
-                  value="{{item}}">
-                  {{item}}
-                </option> -->
+                <option disabled selected>Adreslerim</option>
+                <option *ngFor="let item of userAddresses | keyvalue; let i=index"
+                  value="{{item.value}}">
+                  {{item.value.addressName}}
+                </option>
               </select>
     </div>
     <br/>
@@ -15,8 +15,8 @@
       <h4 class="mb-3">Adres Kayıt</h4>
       <form
         class="needs-validation"
-        #userDetailsForm="ngForm"
-        (ngSubmit)="updateUserDetails(userDetailsForm)"
+        #userAddressForm="ngForm"
+        (ngSubmit)="addUserAddress(userAddressForm)"
       >
         <div class="row">
           <div class="col-md-6 mb-3">
@@ -25,7 +25,7 @@
               type="text"
               class="form-control"
               id="firstName"
-              [(ngModel)]="userInfos.firstName"
+              [(ngModel)]="userAddress.firstName"
               name="firstName"
               required
             />
@@ -39,7 +39,7 @@
               type="text"
               class="form-control"
               id="lastName"
-              [(ngModel)]="userInfos.lastName"
+              [(ngModel)]="userAddress.lastName"
               name="lastName"
               required
             />
@@ -58,7 +58,7 @@
             type="email"
             class="form-control"
             id="email"
-            [(ngModel)]="userInfos.emailId"
+            [(ngModel)]="userAddress.emailId"
             name="email"
             required
           />
@@ -74,7 +74,7 @@
             class="form-control"
             id="address"
             placeholder="Adresiniz"
-            [(ngModel)]="userInfos.address1"
+            [(ngModel)]="userAddress.address1"
             name="address1"
             required
           />
@@ -93,7 +93,7 @@
             class="form-control"
             id="address2"
             placeholder="Apartment or suite"
-            [(ngModel)]="userInfos.address2"
+            [(ngModel)]="userAddress.address2"
             name="address2"
           />
         </div>
@@ -120,7 +120,7 @@
             <select
               class="custom-select d-block w-100"
               id="state"
-              [(ngModel)]="userInfos.state"
+              [(ngModel)]="userAddress.state"
               name="state"
               required
             >
@@ -140,7 +140,7 @@
               class="form-control"
               id="zip"
               placeholder=""
-              [(ngModel)]="userInfos.zip"
+              [(ngModel)]="userAddress.zip"
               name="zip"
               required
             />
@@ -156,8 +156,8 @@
               type="text"
               class="form-control"
               id="addressName"
-              [(ngModel)]="userInfos.emailId"
-              name="email"
+              [(ngModel)]="userAddress.addressName"
+              name="addressName"
               required
             />
             <div class="invalid-feedback">
@@ -169,7 +169,7 @@
         <!-- <button class="btn btn-primary btn-lg btn-block" type="submit" go-click=>
           Ödemeye Devam Et
         </button> -->
-        <Button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="userDetailsForm.form.invalid" >Adresi Kaydet</Button>
+        <Button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="userAddressForm.form.invalid" >Adresi Kaydet</Button>
       </form>
     </div>
   </div>
