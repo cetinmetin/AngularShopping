@@ -15,10 +15,11 @@ import { UserComponent } from "./user.component";
 import { UserAccountComponent } from "./user-account/user-account.component";
 import { SharedModule } from "src/app/shared/shared.module";
 import { UserOrdersComponent } from './user-orders/user-orders.component';
+import { UserAddressesComponent } from './user-addresses/user-addresses.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, RouterModule.forChild(UserRoutes)],
-  declarations: [UserComponent, UserAccountComponent, UserOrdersComponent],
+  declarations: [UserComponent, UserAccountComponent, UserOrdersComponent, UserAddressesComponent],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
 })

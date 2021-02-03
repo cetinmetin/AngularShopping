@@ -12,8 +12,8 @@
               <div>
                 <h6 class="my-0">Ürün Fiyatı</h6>
               </div>
-              <span class="text-muted" style="color: crimson !important;">{{
-                selectedOption?selectedOption:product.productPrice }} TL</span>
+              <span class="text-muted" style="color: crimson !important;">{{selectedOption?selectedOption:
+                product.productPrice }} TL</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div style="margin-top: 3%;margin-right:2%;">
@@ -27,7 +27,7 @@
                 <h6 class="my-0">Seçenek</h6>
               </div>
               <select class="selectpicker show-tick form-control" [(ngModel)]="selectedOption"
-                (change)="onChange($event.target)">
+                (change)="onChange($event.target)" #optionSelect required>
                 <option disabled selected>Ürün Seçenekleri</option>
                 <option *ngFor="let item of product.productOption | keyvalue; let i=index"
                   value="{{item.value.optionPrice}}">
@@ -37,10 +37,12 @@
             </li>
           </ul>
           <div class="d-flex justify-content-around">
-            <Button [disabled]="quantityInput.value <= 0" class="btn btn-primary" (click)="addToCart(product)">
+            <Button [disabled]="quantityInput.value <= 0 || (product.productOption && !selectedOption)"
+              class="btn btn-primary" (click)="addToCart(product)">
               Sepete Ekle
             </Button>
-            <Button [disabled]="quantityInput.value <= 0" class="btn btn-primary" (click)="purchase(product)">
+            <Button [disabled]="quantityInput.value <= 0 || (product.productOption && !selectedOption)"
+              class="btn btn-primary" (click)="purchase(product)">
               Satın Al
             </Button>
           </div>
