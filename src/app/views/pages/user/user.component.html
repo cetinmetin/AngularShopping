@@ -10,19 +10,13 @@
         </li>
         <li class="list-group-item hoverable">
           <a
-            [routerLink]="[
-              '/users',
-              { outlets: { profileOutlet: ['favourite-products'] } }
-            ]"
+          [routerLink]="['../products/favourite-products']"
             >İstek Listeniz</a
           >
         </li>
         <li class="list-group-item hoverable">
           <a
-            [routerLink]="[
-              '/users',
-              { outlets: { profileOutlet: ['cart-items'] } }
-            ]"
+            [routerLink]="['../products/cart-items']"
             >Sepetiniz</a
           >
         </li>

@@ -2,10 +2,10 @@
     <div class="col-md order-md-1">
         <h4 class="mb-3">Kayıtlı Adreslerim</h4>
         <select class="selectpicker show-tick form-control" [(ngModel)]="registeredAddress"
-                (change)="onChange($event.target)" #optionSelect required>
+                (change)="onChange($event.target.value)" #optionSelect required>
                 <option disabled selected>Adreslerim</option>
-                <option *ngFor="let item of userAddresses | keyvalue; let i=index"
-                  value="{{item.value}}">
+                <option *ngFor="let item of userAddresses | keyvalue; let i=index;"
+                  value="{{item.value.addressName}}">
                   {{item.value.addressName}}
                 </option>
               </select>
@@ -57,9 +57,9 @@
           <input
             type="email"
             class="form-control"
-            id="email"
+            id="emailId"
             [(ngModel)]="userAddress.emailId"
-            name="email"
+            name="emailId"
             required
           />
           <div class="invalid-feedback">

@@ -29,22 +29,35 @@ export class UserAddressesComponent implements OnInit {
 
   ngOnInit(): void {
     firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      this.addressService.currentUserId()
-      this.userId = localStorage.getItem('userId')
-      localStorage.removeItem('userId')
-      // User logged in already or has just logged in.
-      this.addressService.getAddressesById(this.userId).valueChanges().subscribe(data => {
-      this.userAddresses = data
-      console.log(this.userAddresses)
-      })
+      if (user) {
+        this.addressService.currentUserId()
+        this.userId = localStorage.getItem('userId')
+        localStorage.removeItem('userId')
+        // User logged in already or has just logged in.
+        this.addressService.getAddressesById(this.userId).valueChanges().subscribe(data => {
+          this.userAddresses = data
+          //console.log(this.userAddresses)
+        })
+      }
     }
-  }
-  )
+    )
   }
 
   onChange(deviceValue) {
-    console.log(deviceValue.firstName)
+    for (let i = 0; i < this.userAddresses.length; i++) {
+      if (deviceValue == this.userAddresses[i].addressName) {
+        this.userAddress.address1 = this.userAddresses[i].address1
+        this.userAddress.address2 = this.userAddresses[i].address2
+        this.userAddress.addressName = this.userAddresses[i].addressName
+        this.userAddress.country = this.userAddresses[i].country
+        this.userAddress.emailId = this.userAddresses[i].emailId
+        this.userAddress.firstName = this.userAddresses[i].firstName
+        this.userAddress.lastName = this.userAddresses[i].lastName
+        this.userAddress.state = this.userAddresses[i].state
+        this.userAddress.userName = this.userAddresses[i].userName
+        this.userAddress.zip = this.userAddresses[i].zip
+      }
+    }
   }
 
   addUserAddress(addressForm: NgForm) {
@@ -59,8 +72,5 @@ export class UserAddressesComponent implements OnInit {
       );
     });
   }
-
-  getUserAddresses(){
-
-  }
+  
 }

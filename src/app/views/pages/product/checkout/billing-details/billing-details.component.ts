@@ -7,7 +7,11 @@ import { AuthService } from "../../../../../shared/services/auth.service";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { map } from "rxjs/operators";
+import { UserAddresses } from "../../../../../shared/models/userAddresses";
+import { AddressService } from "../../../../../shared/services/address.service";
 const moment = require("moment");
+const firebase = require('firebase/app');
+
 @Component({
   selector: "app-billing-details",
   templateUrl: "./billing-details.component.html",
@@ -17,13 +21,16 @@ export class BillingDetailsComponent implements OnInit {
   userDetails: User;
   products: Product[];
   userDetail: UserDetail;
-
+  userAddresses: UserAddresses[]
+  registeredAddress: UserAddresses
+  userId: string
   userInfos = JSON.parse(localStorage.getItem('shippingDetails'));
   constructor(
     authService: AuthService,
     private billingService: BillingService,
     productService: ProductService,
-    private router: Router
+    private router: Router,
+    private addressService: AddressService
   ) {
     /* Hiding Shipping Tab Element */
     document.getElementById("productsTab").style.display = "none";
@@ -40,7 +47,37 @@ export class BillingDetailsComponent implements OnInit {
     );
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.addressService.currentUserId()
+        this.userId = localStorage.getItem('userId')
+        localStorage.removeItem('userId')
+        // User logged in already or has just logged in.
+        this.addressService.getAddressesById(this.userId).valueChanges().subscribe(data => {
+          this.userAddresses = data
+          //console.log(this.userAddresses)
+        })
+      }
+    }
+    )
+  }
+
+  onChange(deviceValue) {
+    for (let i = 0; i < this.userAddresses.length; i++) {
+      if (deviceValue == this.userAddresses[i].addressName) {
+        this.userInfos.address1 = this.userAddresses[i].address1
+        this.userInfos.address2 = this.userAddresses[i].address2
+        this.userInfos.country = this.userAddresses[i].country
+        this.userInfos.emailId = this.userAddresses[i].emailId
+        this.userInfos.firstName = this.userAddresses[i].firstName
+        this.userInfos.lastName = this.userAddresses[i].lastName
+        this.userInfos.state = this.userAddresses[i].state
+        this.userInfos.userName = this.userAddresses[i].userName
+        this.userInfos.zip = this.userAddresses[i].zip
+      }
+    }
+  }
 
   getUniqueId(parts: number): string {
     const stringArr = [];

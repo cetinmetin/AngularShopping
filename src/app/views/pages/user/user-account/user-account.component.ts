@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
-import { User } from "src/app/shared/models/user";
+import { UserDetail } from "src/app/shared/models/user";
 import { AuthService } from "src/app/shared/services/auth.service";
 
 @Component({
@@ -12,5 +12,5 @@ export class UserAccountComponent implements AfterViewInit {
 
   constructor(public authService: AuthService) {}
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void { }
 }

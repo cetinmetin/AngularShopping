@@ -1,16 +1,16 @@
 <div class="container mt-3">
   <div class="col-md order-md-1">
     <h4 class="mb-3">Kayıtlı Adreslerim</h4>
-    <select class="selectpicker show-tick form-control"
-             #optionSelect required>
-            <option disabled selected>Ürün Seçenekleri</option>
-            <!-- <option *ngFor="let item of userInfos | keyvalue; let i=index"
-              value="{{item}}">
-              {{item}}
-            </option> -->
+    <select class="selectpicker show-tick form-control" [(ngModel)]="registeredAddress"
+            (change)="onChange($event.target.value)" #optionSelect required>
+            <option disabled selected>Adreslerim</option>
+            <option *ngFor="let item of userAddresses | keyvalue; let i=index;"
+              value="{{item.value.addressName}}">
+              {{item.value.addressName}}
+            </option>
           </select>
-  </div>
-  <br/>
+</div>
+<br/>
   <div class="col-md order-md-1">
     <h4 class="mb-3">Fatura Adresi</h4>
     <form
