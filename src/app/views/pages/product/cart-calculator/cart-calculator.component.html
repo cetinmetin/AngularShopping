@@ -3,22 +3,26 @@
   <span class="badge badge-primary badge-pill">{{ products.length }}</span>
 </h4>
 <ul class="list-group mb-3">
-  <li
-    class="list-group-item d-flex justify-content-between lh-condensed"
-    *ngFor="let product of products"
-  >
+  <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let product of products">
     <div>
       <h6 class="my-0">{{ product.productName }}</h6>
     </div>
     <span class="text-muted">{{ product.productPrice }} TL</span>
   </li>
   <hr />
+
   <li class="list-group-item d-flex justify-content-between">
-    <span>Toplam Fiyat</span>
+    <span>Kargo:</span>
+    <strong>{{ shipment }} TL</strong>
+  </li>
+  <li class="list-group-item d-flex justify-content-between">
+    <span>Ara Toplam:</span>
+    <strong>{{ subTotal }} TL</strong>
+  </li>
+  <li class="list-group-item d-flex justify-content-between">
+    <span>Toplam Fiyat:</span>
     <strong>{{ totalValue }} TL</strong>
   </li>
-  <a class="btn btn-primary" [routerLink]="['/products/all-products']"
-    >Alışverişe Devam Et</a
-  ><br/>
-  <a class="btn btn-success" [routerLink]="['/checkouts']">Satın Al</a>
+  <button class="btn btn-primary" [routerLink]="['/products/all-products']">Alışverişe Devam Et</button><br />
+  <button class="btn btn-success" [routerLink]="['/checkouts']">Satın Al</button>
 </ul>

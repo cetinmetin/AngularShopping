@@ -7,7 +7,7 @@ import { filter, map } from "rxjs/operators";
 
 import { User } from "../models/user";
 import { UserService } from "./user.service";
-
+import { AddressService } from "./address.service";
 export const ANONYMOUS_USER: User = new User();
 
 @Injectable()
@@ -35,7 +35,8 @@ export class AuthService {
   constructor(
     private firebaseAuth: AngularFireAuth,
     private router: Router,
-    public userService: UserService
+    public userService: UserService,
+    public addressService:AddressService
   ) {
     this.user = firebaseAuth.authState;
 
@@ -65,6 +66,7 @@ export class AuthService {
 
   logout() {
     this.firebaseAuth.signOut().then((res) => {
+      localStorage.removeItem('userId')
       this.subject.next(ANONYMOUS_USER);
       this.router.navigate(["/"]);
     });
@@ -79,6 +81,12 @@ export class AuthService {
       email,
       password
     );
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.addressService.currentUserId()
+      }
+    }
+    )
     return this.firebaseAuth.signInWithEmailAndPassword(email, password);
   }
 

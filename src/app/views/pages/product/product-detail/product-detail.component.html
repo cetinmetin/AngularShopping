@@ -38,13 +38,13 @@
           </ul>
           <div class="d-flex justify-content-around">
             <Button [disabled]="quantityInput.value <= 0 || (product.productOption && !selectedOption)"
-              class="btn btn-primary" (click)="addToCart(product)">
+              class="btn btn-success btn-lg btn-block" (click)="addToCart(product)">
               Sepete Ekle
             </Button>
-            <Button [disabled]="quantityInput.value <= 0 || (product.productOption && !selectedOption)"
+            <!-- <Button [disabled]="quantityInput.value <= 0 || (product.productOption && !selectedOption)"
               class="btn btn-primary" (click)="purchase(product)">
               Satın Al
-            </Button>
+            </Button> -->
           </div>
         </div>
       </div>

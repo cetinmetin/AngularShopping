@@ -11,6 +11,7 @@ export class ProductsComponent implements OnInit {
   checkoutProducts: Product[];
 
   totalPrice = 0;
+  totalPriceFloat = 0;
   constructor(productService: ProductService) {
     document.getElementById("shippingTab").style.display = "none";
     document.getElementById("billingTab").style.display = "none";
@@ -21,8 +22,9 @@ export class ProductsComponent implements OnInit {
     this.checkoutProducts = products;
 
     products.forEach((product) => {
-      this.totalPrice += +(product.productPrice);
+      this.totalPriceFloat += +(product.productPrice);
     });
+    this.totalPrice = Number(this.totalPriceFloat.toFixed(1)) + parseInt(localStorage.getItem("shipment"))
   }
 
   ngOnInit() { }

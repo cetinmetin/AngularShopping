@@ -91,13 +91,14 @@ export class BillingDetailsComponent implements OnInit {
 
   updateUserDetails(form: NgForm) {
     let totalPrice = 0;
+    let totalPriceFloat = 0;
     const products = [];
     this.products.forEach((product) => {
       delete product.$key;
-      totalPrice += +(product.productPrice);
+      totalPriceFloat += +(product.productPrice);
       products.push(product);
     });
-
+    totalPrice = Number(totalPriceFloat.toFixed(1)) + parseInt(localStorage.getItem("shipment"))
     const data = {
       ...form.value,
       emailId: this.userDetail.emailId,

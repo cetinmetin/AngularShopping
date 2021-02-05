@@ -38,6 +38,16 @@ export class ShippingDetailsComponent implements OnInit {
     document.getElementById("productsTab").style.display = "none";
     document.getElementById("resultTab").style.display = "none";
 
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.addressService.currentUserId()
+        this.userId = localStorage.getItem('userId')
+        this.addressService.getAddressesById(this.userId).valueChanges().subscribe(data => {
+          this.userAddresses = data
+        })
+      }
+    }
+    )
     this.userDetail = new UserDetail();
     this.products = productService.getLocalCartProducts();
     authService.user$.pipe(
@@ -47,21 +57,7 @@ export class ShippingDetailsComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.addressService.currentUserId()
-        this.userId = localStorage.getItem('userId')
-        localStorage.removeItem('userId')
-        // User logged in already or has just logged in.
-        this.addressService.getAddressesById(this.userId).valueChanges().subscribe(data => {
-          this.userAddresses = data
-          //console.log(this.userAddresses)
-        })
-      }
-    }
-    )
-  }
+  ngOnInit() {}
   onChange(deviceValue) {
     for (let i = 0; i < this.userAddresses.length; i++) {
       if (deviceValue == this.userAddresses[i].addressName) {
@@ -81,11 +77,13 @@ export class ShippingDetailsComponent implements OnInit {
   updateUserDetails(form: NgForm) {
     const products = [];
     let totalPrice = 0;
+    let totalPriceFloat = 0;
     this.products.forEach((product) => {
       delete product.$key;
-      totalPrice += product.productPrice;
+      totalPriceFloat += +product.productPrice;
       products.push(product);
     });
+    totalPrice = Number(totalPriceFloat.toFixed(1)) + parseInt(localStorage.getItem("shipment"))
     const data = {
       ...form.value,
       emailId: this.userDetail.emailId,

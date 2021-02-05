@@ -1,50 +1,24 @@
-<div class="mt-5 mb-5" id="receipt">
-  <a
-    name=""
-    style="position: relative; float: right;"
-    id=""
-    class="btn btn-primary"
-    href="javascript:;;"
-    role="button"
-    (click)="downloadReceipt()"
-    ><i class="fa fa-download"></i> Fatura</a
-  >
-
-  <div class="row">
-    <div
-      class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3"
-      style="margin: auto;"
-    >
-      <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6">
-          <address>
-            <strong>inno-market</strong>
-            <br />
-            İzmir
-            <br />
-            <abbr title="Phone">P:</abbr> (232) 8124794
-          </address>
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-          <p>
-            <em>Date: {{ date | date }}</em>
-          </p>
-          <p>
-            <em>Fatura #: 34522677W</em>
-          </p>
-        </div>
+<div class="row">
+  <div class="col-sm-8" style="margin-top: 2%;">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Havale/EFT</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
-      <div class="row">
-        <div class="text-center">
-          <h1>Fatura</h1>
-        </div>
+    </div>
+  </div>
+  <div class="col-sm-4" style="margin-top: 2%;">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Sipariş Özeti</h5>
         <table class="table table-hover">
           <thead>
             <tr>
               <th>Ürün</th>
               <td></td>
-              <th class="text-center">Fiyat</th>
-              <th class="text-center">Toplam</th>
+              <th class="text-center"></th>
+              <th class="text-center">Tutar:</th>
             </tr>
           </thead>
           <tbody>
@@ -55,10 +29,132 @@
                 </h6>
               </td>
               <td></td>
-              <td class="col-md-1 text-center">{{ product.productPrice }} TL</td>
+              <td class="col-md-1 text-center"></td>
               <td class="col-md-1 text-center">{{ product.productPrice }} TL</td>
             </tr>
-            <!-- <tr>
+            <tr>
+              <td class="text-left">
+                <p>
+                  <strong>Kargo: </strong>
+                </p>
+                <p>
+                  <strong>Ara Toplam: </strong>
+                </p>
+              </td>
+              <td></td>
+              <td></td>
+              <td class="text-center">
+                <p>
+                  <strong>{{shipment}} TL</strong>
+                </p>
+                <p>
+                  <strong>{{subTotal}} TL</strong>
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-left">
+                <p><strong>Toplam Tutar: </strong></p>
+              </td>
+              <td></td>
+              <td></td>
+              <td class="text-center text-danger">
+                <h4>
+                  <strong>{{ totalPrice }}TL</strong>
+                </h4>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<button style="color: white; margin-bottom: 2%; margin-top: 2%;" (click)="placeOrder()"
+  class="btn btn-success btn-lg btn-block purchase">Siparişi Onaylıyorum</button>
+
+
+
+<!-- <div class="row">
+  <div class="col-sm-8" id="receipt">
+     <a name="" style="position: relative; float: right;" id="" class="btn btn-primary" href="javascript:;;"
+      role="button" (click)="downloadReceipt()"><i class="fa fa-download"></i>Sipariş Özeti İndir</a>
+
+    <div class="card" style="margin-top: 2%;">
+       <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <address>
+              <strong>inno-market</strong>
+              <br />
+              İzmir
+              <br />
+              <abbr title="Phone">P:</abbr> (232) 8124794
+            </address>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+            <p>
+              <em>Date: {{ date | date }}</em>
+            </p>
+            <p>
+              <em>Fatura #: 34522677W</em>
+            </p>
+          </div>
+        </div>
+      <div class="card-body">
+        <h1 class="card-title">ÖDEME</h1>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+         <button type="button" class="btn btn-success btn-lg btn-block">
+          Siparişi Onayla <span class="glyphicon glyphicon-chevron-right"></span>
+        </button> -->
+<!-- <a type="button" (click)="placeOrder()" class="btn btn-primary btn-lg btn-block">Siparişi Onayla</a>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+       <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <address>
+              <strong>inno-market</strong>
+              <br />
+              İzmir
+              <br />
+              <abbr title="Phone">P:</abbr> (232) 8124794
+            </address>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+            <p>
+              <em>Date: {{ date | date }}</em>
+            </p>
+            <p>
+              <em>Fatura #: 34522677W</em>
+            </p>
+          </div>
+        </div>
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">SİPARİŞ ÖZETİ</h1>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Ürün</th>
+                <td></td>
+                <th class="text-center">Fiyat</th>
+                <th class="text-center">Toplam</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of products">
+                <td class="col-md-9">
+                  <h6>
+                    <em>{{ product.productName }}</em>
+                  </h6>
+                </td>
+                <td></td>
+                <td class="col-md-1 text-center">{{ product.productPrice }} TL</td>
+                <td class="col-md-1 text-center">{{ product.productPrice }} TL</td>
+              </tr>
+               <tr>
               <td></td>
               <td></td>
               <td class="text-right">
@@ -77,26 +173,26 @@
                   <strong>{{ tax }} TL</strong>
                 </p>
               </td>
-            </tr> -->
-            <tr>
-              <td></td>
-              <td></td>
-              <td class="text-right">
-                <p><strong>Toplam: </strong></p>
-              </td>
-              <td class="text-center text-danger">
-                <h4>
-                  <strong>{{ totalPrice }} TL</strong>
-                </h4>
-              </td>
             </tr>
-          </tbody>
-        </table>
-        <!-- <button type="button" class="btn btn-success btn-lg btn-block">
+              <tr>
+                <td></td>
+                <td></td>
+                <td class="text-right">
+                  <p><strong>Toplam: </strong></p>
+                </td>
+                <td class="text-center text-danger">
+                  <h4>
+                    <strong>{{ totalPrice }} TL</strong>
+                  </h4>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="btn btn-success btn-lg btn-block">
           Siparişi Onayla <span class="glyphicon glyphicon-chevron-right"></span>
-        </button> -->
-        <a type="button" (click)="placeOrder()" class="btn btn-primary btn-lg btn-block">Siparişi Onayla</a>
+        </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->

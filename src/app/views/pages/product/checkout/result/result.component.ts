@@ -16,20 +16,42 @@ export class ResultComponent implements OnInit {
   products: Product[];
   date: number;
   totalPrice = 0;
-  tax=0;
-  constructor(private productService: ProductService,private router: Router, private billingService: BillingService,private shippingService: ShippingService) {
+  shipment = 0;
+  subTotal = 0;
+  subTotalFloat=0;
+  constructor(private productService: ProductService, private router: Router, private billingService: BillingService, private shippingService: ShippingService) {
     /* Hiding Billing Tab Element */
     document.getElementById("productsTab").style.display = "none";
     document.getElementById("shippingTab").style.display = "none";
     document.getElementById("billingTab").style.display = "none";
     document.getElementById("resultTab").style.display = "block";
-
     this.products = productService.getLocalCartProducts();
 
     this.products.forEach((product) => {
-      this.totalPrice += +(product.productPrice);
-    });
-    this.tax = this.totalPrice*0.18;
+      this.subTotalFloat += +(product.productPrice)
+    })
+    this.subTotal = Number(this.subTotalFloat.toFixed(1))
+    if (this.subTotal < 50) {
+      setTimeout(function () {
+        var button = document.querySelector(".ng-tns-c105-0 .container .ng-trigger-fadeAnimation app-checkout section .container .board .tab-content .ng-star-inserted .purchase")
+        button.innerHTML = "Alışverişi Tamamlamak İçin 50 TL ve Üzeri Ürün Satın Alınız";
+        button.className = "btn btn-danger btn-lg btn-block";
+        button.setAttribute("disabled", "true")
+      }, 100)
+    }
+    else if (this.subTotal >= 50 && this.subTotal < 100) {
+      this.shipment = 7
+    }
+    else if (this.subTotal >= 100 && this.subTotal < 150) {
+      this.shipment = 10
+    }
+    else if (this.subTotal >= 150 && this.subTotal < 200) {
+      this.shipment = 15
+    }
+    else if (this.subTotal >= 200) {
+      this.shipment = 0
+    }
+    this.totalPrice = Number((this.subTotal + this.shipment).toFixed(1))
     this.date = Date.now();
   }
 
@@ -60,6 +82,7 @@ export class ResultComponent implements OnInit {
     localStorage.removeItem('shippingDetails');
     localStorage.removeItem('billingDetails');
     localStorage.removeItem('avct_item');
+    localStorage.removeItem('shipment');
     this.router.navigate([
       "checkouts",
       { outlets: { checkOutlet: ["order-success"] } },
