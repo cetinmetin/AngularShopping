@@ -1,10 +1,27 @@
 <div class="row">
   <div class="col-sm-8" style="margin-top: 2%;">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Havale/EFT</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="card ">
+      <div class="card-body row">
+        <div class="col-sm-9">
+          <h5 class="card-title">Havale/EFT</h5>
+          <p class="card-text">Havale/EFT ile ödeme yapmak için aşağıdaki IBAN numaralarına sipariş tutarını,
+            açıklama kısmına da aşağıdaki referans numaranızı girerek 2 iş günü içerisinde
+            gönderiniz.<br /><br />
+            Türkiye Garanti Bankası IBAN: TR12 5896 2563 1456 9825 7452 02 <br />
+            Türkiye İş Bankası IBAN: TR12 5896 2563 1456 9825 7452 05 <br />
+            Türkiye Ziraat Bankası IBAN: TR12 5896 2563 1456 9825 7452 08 <br/><br/>
+            <strong>Referans Numaranız: {{referanceNumber}} </strong>
+          </p>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+        <div class="col-sm-3">
+          <h5 class="card-title"><strong>Bilgilendirme</strong></h5>
+          <p class="card-text">
+            Açıklama kısmına referans numaranızı doğru girmeniz sipariş takibinizi
+            yapabilmemiz
+            için çok önemlidir.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -22,7 +39,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let product of products">
+            <tr *ngFor="let product of products;">
               <td class="col-md-9">
                 <h6>
                   <em>{{ product.productName }}</em>

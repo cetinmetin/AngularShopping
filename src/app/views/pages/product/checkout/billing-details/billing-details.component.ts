@@ -47,7 +47,7 @@ export class BillingDetailsComponent implements OnInit {
     );
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.addressService.currentUserId()
@@ -107,7 +107,8 @@ export class BillingDetailsComponent implements OnInit {
       totalPrice,
       billingDate: moment().unix(),
       orderStatus: 1,
-      billingID: this.getUniqueId(4)
+      billingID: this.getUniqueId(4),
+      referanceNumber: this.getUniqueId(5)
     };
     localStorage.setItem('billingDetails', JSON.stringify(data));
     this.router.navigate([

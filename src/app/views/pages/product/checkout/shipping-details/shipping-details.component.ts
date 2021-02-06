@@ -73,7 +73,6 @@ export class ShippingDetailsComponent implements OnInit {
       }
     }
   }
-
   updateUserDetails(form: NgForm) {
     const products = [];
     let totalPrice = 0;
@@ -90,7 +89,7 @@ export class ShippingDetailsComponent implements OnInit {
       //userId: this.userDetail.$key,
       products,
       totalPrice,
-      shippingDate: Date.now(),
+      shippingDate: Date.now()
     };
     localStorage.setItem('shippingDetails', JSON.stringify(data));
     this.router.navigate([

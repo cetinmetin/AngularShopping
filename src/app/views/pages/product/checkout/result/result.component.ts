@@ -18,7 +18,8 @@ export class ResultComponent implements OnInit {
   totalPrice = 0;
   shipment = 0;
   subTotal = 0;
-  subTotalFloat=0;
+  subTotalFloat = 0;
+  referanceNumber: string
   constructor(private productService: ProductService, private router: Router, private billingService: BillingService, private shippingService: ShippingService) {
     /* Hiding Billing Tab Element */
     document.getElementById("productsTab").style.display = "none";
@@ -26,7 +27,8 @@ export class ResultComponent implements OnInit {
     document.getElementById("billingTab").style.display = "none";
     document.getElementById("resultTab").style.display = "block";
     this.products = productService.getLocalCartProducts();
-
+    var storedBillingDetails = JSON.parse(localStorage.getItem('billingDetails'))
+    this.referanceNumber = storedBillingDetails.referanceNumber
     this.products.forEach((product) => {
       this.subTotalFloat += +(product.productPrice)
     })
@@ -56,7 +58,15 @@ export class ResultComponent implements OnInit {
   }
 
   ngOnInit() { }
-
+  getUniqueId(parts: number): string {
+    const stringArr = [];
+    for (let i = 0; i < parts; i++) {
+      // tslint:disable-next-line:no-bitwise
+      const S4 = (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+      stringArr.push(S4);
+    }
+    return stringArr.join('-');
+  }
   downloadReceipt() {
     const data = document.getElementById("receipt");
     // console.log(data);
