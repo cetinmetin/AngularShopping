@@ -97,7 +97,7 @@
           >{{ this.translate.data["ADMINPANEL"] | translate }}</a
         >
       </li>
-      <li class="nav-item dropdown" dropdown>
+      <!-- <li class="nav-item dropdown" dropdown>
         <a
           dropdownToggle
           type="button"
@@ -153,7 +153,7 @@
             {{ lang.language }} ({{ lang.langCode }})</a
           >
         </div>
-      </li>
+      </li> -->
       <li class="nav-item" *ngIf="authService.isLoggedOut$ | async">
         <a class="nav-link" [routerLink]="['/login']">
           <i class="fa fa-sign-in mr-1"></i>

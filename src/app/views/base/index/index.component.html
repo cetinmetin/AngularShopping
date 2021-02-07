@@ -18,12 +18,12 @@
     </ol>
     <!--/.Indicators-->
     <!--Slides-->
-    <div class="carousel-inner" role="listbox">
+    <div class="carousel-inner" role="listbox" style="height: 300px;">
       <div
         *ngFor="let carouselItem of carouselList; let i = index"
         class="carousel-item {{ i === 0 ? 'active' : '' }}"
       >
-        <div class="view">
+        <div class="view" style="height: 300px;">
           <img
             class="d-block w-100"
             [src]="carouselItem.bannerImg"

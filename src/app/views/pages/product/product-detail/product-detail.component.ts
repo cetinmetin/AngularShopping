@@ -16,6 +16,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   productOption: ProductOptions[]
   selectedOption: number
   productOptionName: string
+  currentQuantity: number = 0
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -31,7 +32,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       this.getProductDetail(id);
     });
   }
-
+  changeQuantity(quantity) {
+    this.currentQuantity = quantity.value
+  }
   getProductDetail(id: string) {
     const x = this.productService.getProductById(id);
     x.snapshotChanges().subscribe(

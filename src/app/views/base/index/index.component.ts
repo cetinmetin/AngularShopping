@@ -9,19 +9,19 @@ export class IndexComponent implements OnInit {
   carouselList = [
     {
       bannerImg: "./assets/banner_img/img_1.jpg",
-      title: "Apple iPhone",
-      description: "Explore iPhone, the world's most powerful personal device",
+      title: "Inno Market Açıldı!",
+      description: "İndirimler ve Kampanyalar İçin Takipte Kalın",
     },
     {
       bannerImg: "./assets/banner_img/img_3.jpg",
-      title: "Never Settle - OnePlus",
+      title: "Yeni Web Sitemiz ile Hizmetinizdeyiz",
       description:
-        " OnePlus creates beautifully designed products with premium build quality & brings the best technology to users around the world",
+        "Web sitemize özel fiyatlar",
     },
     {
       bannerImg: "./assets/banner_img/img_4.jpg",
-      title: "Google Pixel",
-      description: "Discover a better way to capture, store, and see the world",
+      title: "Yeni ürünler",
+      description: "Yeni ürünlerimizi Keşfedin",
     },
   ];
 
